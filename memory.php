@@ -5,23 +5,26 @@ I- plusieurs images sont présentées, une image est présentée deux fois, elle
     c) display ces images dans un tableau html // à voir
 
 II- leur ordre est randomnisé selon la partie == chaque nouvelle partie (une nouvelle session crée lors de l'appui d'un bouton "jouer") -> nouvel ordre.
+    a) créer une session lorsque le start est appuyé : session jeu
+    b) si c'est un utilisateur connecté, alors rajouté l'id-utilisateurs sinon, non
+    c) si une session jeu existante, alors shuffle les cartes et les garder dans cet ordre-ci
 
+III- deux clics possibles :: 
+     -soit les deux images cliquées ne sont pas pareilles alors echo "ok"
+     -soit les deux images cliquées sont pareilles alors echo "pas ok"
 
-III- quand le dos est cliqué -> l'image se retourne => face. La face n'est présentée que si et seulement si le dos est cliqué
+IV- quand le dos est cliqué -> l'image se retourne => face. La face n'est présentée que si et seulement si le dos est cliqué
     a)
     b)
     c)
-
-IV- deux clics possibles :: 
-     -soit les deux images cliquées ne sont pas pareilles alors se retournent
-     -soit les deux images cliquées sont pareilles alors ne se retournent plus 
 -->
 
 <?php
 
+    session_start();
+
 class Image {
     public $_face;
-    public $_size;
     public $_identifiant;
     
     public function __construct (string $face, int $identifiant){
@@ -44,17 +47,17 @@ $spring3);
 $faceUpArray = array_merge($faceUpArray,$faceUpArray);
 
 
-//ATTENTION QUAND JE CLIQUE SUR UNE CARTE IL ME REMET LES CARTE DANS L'ORDRE
 if(isset($_POST['startgame'])){
-    
-    // créer une session 
+
+    shuffle($faceUpArray); 
+
+    $_SESSION['start']=$faceUpArray;
 }
 
-    // si une session existante
-    shuffle($faceUpArray); 
-    if (isset($_POST['face'])){
+if (isset($_POST['face'])){
         echo "ok";
-    }
+}
+
 
 ?>
 
@@ -67,24 +70,49 @@ if(isset($_POST['startgame'])){
 </head>
 <body>
 
-    <form action="memory.php" method="post">
+    <form action="" method="post">
         <button type="submit" name="startgame">Start game</button>
     </form>
 
 
-    <form action="memory.php" method="post">
-
+    <form action="" method="post">
     <?php 
-            foreach($faceUpArray as $faceUp) { 
+
+        if(!isset($_SESSION['start'])){
+              foreach($faceUpArray as $faceUp) { 
         ?> 
                 <button type="submit" name="face">
                     <img src="<?php echo $faceUp->_face ?>">
                 </button>
         <?php
-            }
-        ?>
+              }
+        }else {
+            foreach($_SESSION['start'] as $faceUp) { 
+                ?> 
+                        <button type="submit" name="face">
+                            <img src="<?php echo $faceUp->_face ?>">
+                        </button>
+                <?php
+                      }
+        }
+        ?>           
 
     </form>
 
 </body>
 </html>
+
+<!-- pour choisir dans l'array que quelques pairs -->
+<!-- for ($i = 0 ; $i < 3 ; $i ++)
+
+{
+
+    echo "<td align = 'center'> <img src = \"" ;
+
+    echo $faceUpArray [$i] ;
+
+    echo " \" width = '115' height = '115' </td>" ;
+
+}
+
+    ?> -->
