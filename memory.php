@@ -13,6 +13,9 @@ III- deux clics possibles ::
      -soit les deux images cliquées ne sont pas pareilles alors echo "ok"
      -soit les deux images cliquées sont pareilles alors echo "pas ok"
 
+     a) créer une boucle pour compter le nombre de clics
+     b) si les deux clics correspondent aux mêmes images : "ok" -- sinon "pas ok"
+
 IV- quand le dos est cliqué -> l'image se retourne => face. La face n'est présentée que si et seulement si le dos est cliqué
     a)
     b)
@@ -54,9 +57,11 @@ if(isset($_POST['startgame'])){
     $_SESSION['start']=$faceUpArray;
 }
 
-if (isset($_POST['face'])){
-        echo "ok";
-}
+        if (isset($_POST['face'])){
+            // retourne la carte
+            // check si les cartes appuyées sont pareilles
+            
+        }
 
 
 ?>
@@ -77,26 +82,16 @@ if (isset($_POST['face'])){
 
     <form action="" method="post">
     <?php 
-
-        if(!isset($_SESSION['start'])){
-              foreach($faceUpArray as $faceUp) { 
-        ?> 
-                <button type="submit" name="face">
-                    <img src="<?php echo $faceUp->_face ?>">
-                </button>
-        <?php
-              }
-        }else {
+        if(isset($_SESSION['start'])){
             foreach($_SESSION['start'] as $faceUp) { 
                 ?> 
                         <button type="submit" name="face">
                             <img src="<?php echo $faceUp->_face ?>">
                         </button>
                 <?php
-                      }
+            }
         }
         ?>           
-
     </form>
 
 </body>
