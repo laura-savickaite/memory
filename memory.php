@@ -28,24 +28,26 @@ IV- quand le dos est cliqué -> l'image se retourne => face. La face n'est prés
 
 class Image {
     public $_face;
+    public $_back;
     public $_identifiant;
     
-    public function __construct (string $face, int $identifiant){
+    public function __construct (string $face, string $back, int $identifiant){
         $this->_face = $face;
+        $this->_back = $back;
         $this->_identifiant = $identifiant;
     }
 }
 
 
-$lucifer = new Image ("Images/lucifer.png", 1);
+$lucifer = new Image ("Images/lucifer.png", "Images/dos.jpeg", 1);
 // var_dump($lucifer -> _face);
-$reading = new Image ("Images/reading.png", 2);
-$renaissance = new Image ("Images/renaissance.png", 3);
-$spring1 = new Image ("Images/spring1.png", 4);
-$spring2 = new Image ("Images/spring2.png", 5);
-$spring3 = new Image ("Images/spring3.png", 6);
+$reading = new Image ("Images/reading.png", "Images/dos.jpeg", 2);
+$renaissance = new Image ("Images/renaissance.png", "Images/dos.jpeg", 3);
+$spring1 = new Image ("Images/spring1.png", "Images/dos.jpeg", 4);
+$spring2 = new Image ("Images/spring2.png", "Images/dos.jpeg", 5);
+$spring3 = new Image ("Images/spring3.png", "Images/dos.jpeg", 6);
 
-$faceUpArray = array($lucifer, $reading, $renaissance,$spring1, $spring2,
+$faceUpArray = array($lucifer, $reading, $renaissance, $spring1, $spring2,
 $spring3);
 $faceUpArray = array_merge($faceUpArray,$faceUpArray);
 
@@ -88,7 +90,7 @@ if (isset($_POST['face'])){
                 $_SESSION["foundpairs"][$i] = $valeur;
                 $foundPairs = $_SESSION["foundpairs"];
             }
-            var_dump($_SESSION["foundpairs"][$i]);
+            // var_dump($_SESSION["foundpairs"]);
         }else{
             echo 'cartes non identiques';
         }
@@ -102,9 +104,6 @@ if (isset($_POST['face'])){
         $_SESSION['clickcounter']=0;
     }   
     }  
-
-        
-
 ?>
 
 <!doctype html>
@@ -130,12 +129,12 @@ if (isset($_POST['face'])){
             foreach($_SESSION['start'] as $faceUp) { 
                 if(in_array($faceUp->_identifiant, $foundPairs)) {
                     ?>
-                        <img src="<?php echo $faceUp->_face ?>">
+                        <img src="<?php echo $faceUp->_face ?>" width="200px">
                 <?php        
                 }else{ 
                     ?>
                         <button type="submit" name="face" value="<?php echo $faceUp->_identifiant ?>">
-                            <img src="<?php echo $faceUp->_face ?>">
+                            <img src="<?php echo $faceUp->_face ?>" width="200px">
                         </button>
                     <?php
 
