@@ -51,7 +51,6 @@ $faceUpArray = array_merge($faceUpArray,$faceUpArray);
 
 $foundPairs=array();
 
-
 if(isset($_POST['startgame'])){
 
     shuffle($faceUpArray); 
@@ -60,29 +59,44 @@ if(isset($_POST['startgame'])){
 
     $_SESSION['clickcounter']=0;
 }
+if(isset($_POST['restartgame'])){
+    session_destroy();
+}
 
 if (isset($_POST['face'])){
 
     $_SESSION['clickcounter']=$_SESSION['clickcounter']+1;
     $click = $_SESSION['clickcounter'];
     $valeur = $_POST['face'];
-    // echo $click;
-        echo $click.'<br>';
-        echo $valeur;
-    var_dump($_SESSION['clickedID']);
+    //     echo $click.'<br>';
+    //     echo $valeur;
+    // var_dump($_SESSION['clickedID']);
         //tous les nombres pairs tu vas vérifier:
     if ($click % 2 == 0){
+        
         if ($_SESSION['clickedID'] == $valeur){
-            echo 'cartes identiques';
-            // $lol = array_merge($foundPairs,array($valeur, $_SESSION['clickedID']));  
-            // var_dump($lol);
-
+            echo 'cartes identiques'; 
+              
+            if (!isset($_SESSION["foundpairs"])){
+                $_SESSION["foundpairs"] = [];
+            }
+            $i = 0;
+            foreach ($_SESSION["foundpairs"] as $key => $value) {
+                $i++;
+            }
+            if (isset($_SESSION["foundpairs"])){
+                $_SESSION["foundpairs"][$i] = $valeur;
+                $foundPairs = $_SESSION["foundpairs"];
+            }
+            var_dump($_SESSION["foundpairs"][$i]);
         }else{
             echo 'cartes non identiques';
         }
     }
     $_SESSION['clickedID'] = $valeur;
     //refais étape par étape avant click, premier click etc... session tjs un train de retard donc retente, si comprend pas pk la session à la fin : j'ouvre la page, je ne clique sur rien : rien ne se passe. Je clique sur une carte -> la session clickcounter se lance, click prend la valeur 1, valeur prend la valeur de la carte, la boucle ne va pas dans le if, et straight à dire que la session clickedID va prendre la valeur. Ensuite je clique une nouvelle fois, la session clickedID a tjs une valeur stockée, je refais toute la boucle from Post['face'] etc... $valeur a une nouvelle valeur : celle de la nouvelle carte cliquée et SEULEMENT LA je rentre dans la boucle if click modulo de 2, dans ce cas, je lui dis : la session que tu avais au tour précédant, que tu as stocké, tu vas me la comparer avec la nouvelle valeur que tu t'es stocké dans $valeur. Une fois que la boucle se termine, je lui redis que Session clickedId aura du coup à nouveau la nouvelle valeur qui est stockée dans valeur etc...etc...
+
+
 
     if($click == 2){
         $_SESSION['clickcounter']=0;
@@ -106,20 +120,23 @@ if (isset($_POST['face'])){
         <button type="submit" name="startgame">Start game</button>
     </form>
 
+    <form action="" method="post">
+        <button type="submit" name="restartgame">Restart game</button>
+    </form>
 
     <form action="" method="post">
     <?php 
         if(isset($_SESSION['start'])){
             foreach($_SESSION['start'] as $faceUp) { 
-                if(!in_array($faceUp->_identifiant, $foundPairs)) {
+                if(in_array($faceUp->_identifiant, $foundPairs)) {
+                    ?>
+                        <img src="<?php echo $faceUp->_face ?>">
+                <?php        
+                }else{ 
                     ?>
                         <button type="submit" name="face" value="<?php echo $faceUp->_identifiant ?>">
                             <img src="<?php echo $faceUp->_face ?>">
                         </button>
-                <?php        
-                }else{ 
-                    ?>
-                        <img src="<?php echo $faceUp->_face ?>">
                     <?php
 
                 }
