@@ -30,26 +30,34 @@ class Image {
     public $_face;
     public $_back;
     public $_identifiant;
+    public $_retourner;
     
-    public function __construct (string $face, string $back, int $identifiant){
+    public function __construct (string $face, string $back, int $identifiant, int $retourner){
         $this->_face = $face;
         $this->_back = $back;
         $this->_identifiant = $identifiant;
+        $this->_retourner = $retourner;
     }
 }
 
 
-$lucifer = new Image ("Images/lucifer.png", "Images/dos.jpeg", 1);
+$lucifer = new Image ("Images/lucifer.png", "Images/dos.jpeg", 1, 1);
 // var_dump($lucifer -> _face);
-$reading = new Image ("Images/reading.png", "Images/dos.jpeg", 2);
-$renaissance = new Image ("Images/renaissance.png", "Images/dos.jpeg", 3);
-$spring1 = new Image ("Images/spring1.png", "Images/dos.jpeg", 4);
-$spring2 = new Image ("Images/spring2.png", "Images/dos.jpeg", 5);
-$spring3 = new Image ("Images/spring3.png", "Images/dos.jpeg", 6);
+$reading = new Image ("Images/reading.png", "Images/dos.jpeg", 2, 1);
+$renaissance = new Image ("Images/renaissance.png", "Images/dos.jpeg", 3, 1);
+$spring1 = new Image ("Images/spring1.png", "Images/dos.jpeg", 4, 1);
+$spring2 = new Image ("Images/spring2.png", "Images/dos.jpeg", 5, 1);
+$spring3 = new Image ("Images/spring3.png", "Images/dos.jpeg", 6, 1);
+$luciferBis = new Image ("Images/lucifer.png", "Images/dos.jpeg", 1, 1);
+$readingBis = new Image ("Images/reading.png", "Images/dos.jpeg", 2, 1);
+$renaissanceBis = new Image ("Images/renaissance.png", "Images/dos.jpeg", 3, 1);
+$spring1Bis = new Image ("Images/spring1.png", "Images/dos.jpeg", 4, 1);
+$spring2Bis = new Image ("Images/spring2.png", "Images/dos.jpeg", 5, 1);
+$spring3Bis = new Image ("Images/spring3.png", "Images/dos.jpeg", 6, 1);
 
 $faceUpArray = array($lucifer, $reading, $renaissance, $spring1, $spring2,
-$spring3);
-$faceUpArray = array_merge($faceUpArray,$faceUpArray);
+$spring3, $luciferBis, $readingBis, $renaissanceBis, $spring1Bis, $spring2Bis, $spring3Bis);
+
 
 $foundPairs=array();
 
@@ -65,11 +73,12 @@ if(isset($_POST['restartgame'])){
     session_destroy();
 }
 
-if (isset($_POST['face'])){
-
+if (isset($_POST['submit'])){
+    var_dump($_POST['retourner']);
+    var_dump($_POST['identifiant']); 
     $_SESSION['clickcounter']=$_SESSION['clickcounter']+1;
     $click = $_SESSION['clickcounter'];
-    $valeur = $_POST['face'];
+    $valeur = $_POST['identifiant'];
     //     echo $click.'<br>';
     //     echo $valeur;
     // var_dump($_SESSION['clickedID']);
@@ -104,6 +113,9 @@ if (isset($_POST['face'])){
         $_SESSION['clickcounter']=0;
     }   
     }  
+
+
+    // caser le click dans une session
 ?>
 
 <!doctype html>
@@ -126,22 +138,24 @@ if (isset($_POST['face'])){
     <form action="" method="post">
     <?php 
         if(isset($_SESSION['start'])){
-            foreach($_SESSION['start'] as $faceUp) { 
-                if(in_array($faceUp->_identifiant, $foundPairs)) {
+            
+            foreach($_SESSION['start'] as $card) {               
+                if(in_array($card->_identifiant, $foundPairs)) {
                     ?>
-                        <img src="<?php echo $faceUp->_face ?>" width="200px">
+                        <img src="<?php echo $card->_face ?>" width="200px">
                 <?php        
                 }else{ 
                     ?>
-                        <button type="submit" name="face" value="<?php echo $faceUp->_identifiant ?>">
-                            <img src="<?php echo $faceUp->_face ?>" width="200px">
-                        </button>
+                        <input type="hidden" name="retourner" value="<?php echo $card->_retourner ?>">
+                        <input type="hidden" name="identifiant" value="<?php  echo $card->_identifiant ?>">
+                        <button type="submit" name="submit">
+                            <img src="<?php echo $card->_back ?>" width="200px">
+                        </button> 
                     <?php
-
-                }
-                 
+                    }
+                }   
             }
-        } 
+        
   
         ?>           
     </form>
