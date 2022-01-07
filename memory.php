@@ -74,8 +74,9 @@ if(isset($_POST['restartgame'])){
 }
 
 if (isset($_POST['submit'])){
-    var_dump($_POST['retourner']);
-    var_dump($_POST['identifiant']); 
+    foreach($_SESSION['start'] as $key -> $value){}
+    // echo($_POST['identifiant']);
+    // echo($_POST['retourner']);
     $_SESSION['clickcounter']=$_SESSION['clickcounter']+1;
     $click = $_SESSION['clickcounter'];
     $valeur = $_POST['identifiant'];
@@ -112,7 +113,7 @@ if (isset($_POST['submit'])){
     if($click == 2){
         $_SESSION['clickcounter']=0;
     }   
-    }  
+}  
 
 
     // caser le click dans une session
@@ -144,7 +145,12 @@ if (isset($_POST['submit'])){
                     ?>
                         <img src="<?php echo $card->_face ?>" width="200px">
                 <?php        
-                }else{ 
+                }elseif($card->_retourner==2){
+                    ?>
+                    <!-- <img src="<?php echo SESSION DE LURL DE LA CARTE CLIQUEE ?>" width="200px"> -->
+                <?php 
+                }
+                else{ 
                     ?>
                         <input type="hidden" name="retourner" value="<?php echo $card->_retourner ?>">
                         <input type="hidden" name="identifiant" value="<?php  echo $card->_identifiant ?>">
