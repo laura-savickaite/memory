@@ -27,6 +27,24 @@ IV- quand le dos est cliqué -> l'image se retourne => face. La face n'est prés
 require 'card.php';
 session_start();
 
+<<<<<<< HEAD
+=======
+class Image {
+    public $_face;
+    public $_back;
+    public $_identifiant;
+    public $_retourner;
+    
+    public function __construct (string $face, string $back, int $identifiant, int $retourner){
+        $this->_face = $face;
+        $this->_back = $back;
+        $this->_identifiant = $identifiant;
+        $this->_retourner = $retourner;
+    }
+}
+
+
+>>>>>>> bddced62c8a4f6b6e16c8c951cccba4abb166a37
 $lucifer = new Image ("Images/lucifer.png", "Images/dos.jpeg", 1, 1);
 // var_dump($lucifer -> _face);
 $reading = new Image ("Images/reading.png", "Images/dos.jpeg", 2, 1);
@@ -34,6 +52,7 @@ $renaissance = new Image ("Images/renaissance.png", "Images/dos.jpeg", 3, 1);
 $spring1 = new Image ("Images/spring1.png", "Images/dos.jpeg", 4, 1);
 $spring2 = new Image ("Images/spring2.png", "Images/dos.jpeg", 5, 1);
 $spring3 = new Image ("Images/spring3.png", "Images/dos.jpeg", 6, 1);
+<<<<<<< HEAD
 $luciferBis = new Image ("Images/lucifer.png", "Images/dos.jpeg", 7, 1);
 $readingBis = new Image ("Images/reading.png", "Images/dos.jpeg", 8, 1);
 $renaissanceBis = new Image ("Images/renaissance.png", "Images/dos.jpeg", 9, 1);
@@ -43,6 +62,18 @@ $spring3Bis = new Image ("Images/spring3.png", "Images/dos.jpeg", 12, 1);
 
 $faceUpArray = array($lucifer, $reading, $renaissance, $spring1, $spring2,
 $spring3, $luciferBis, $readingBis, $renaissanceBis, $spring1Bis, $spring2Bis, $spring3Bis);
+=======
+$luciferBis = new Image ("Images/lucifer.png", "Images/dos.jpeg", 1, 1);
+$readingBis = new Image ("Images/reading.png", "Images/dos.jpeg", 2, 1);
+$renaissanceBis = new Image ("Images/renaissance.png", "Images/dos.jpeg", 3, 1);
+$spring1Bis = new Image ("Images/spring1.png", "Images/dos.jpeg", 4, 1);
+$spring2Bis = new Image ("Images/spring2.png", "Images/dos.jpeg", 5, 1);
+$spring3Bis = new Image ("Images/spring3.png", "Images/dos.jpeg", 6, 1);
+
+$faceUpArray = array($lucifer, $reading, $renaissance, $spring1, $spring2,
+$spring3, $luciferBis, $readingBis, $renaissanceBis, $spring1Bis, $spring2Bis, $spring3Bis);
+
+>>>>>>> bddced62c8a4f6b6e16c8c951cccba4abb166a37
 
 // $foundPairs=array();
 
@@ -57,6 +88,7 @@ if(isset($_POST['restartgame'])){
     session_destroy();
 }
 
+<<<<<<< HEAD
 if(isset($_POST['submit'])){
 
 $_SESSION['clickcounter']=$_SESSION['clickcounter']+1;
@@ -105,6 +137,52 @@ $_SESSION['start'][$_POST['index']]->foundPairs($_SESSION['start'][$_POST['index
 // echo ($_SESSION['clickedID']);
 /* var_dump($_SESSION['start']); */
 
+=======
+if (isset($_POST['submit'])){
+    foreach($_SESSION['start'] as $key -> $value){}
+    // echo($_POST['identifiant']);
+    // echo($_POST['retourner']);
+    $_SESSION['clickcounter']=$_SESSION['clickcounter']+1;
+    $click = $_SESSION['clickcounter'];
+    $valeur = $_POST['identifiant'];
+    //     echo $click.'<br>';
+    //     echo $valeur;
+    // var_dump($_SESSION['clickedID']);
+        //tous les nombres pairs tu vas vérifier:
+    if ($click % 2 == 0){
+        
+        if ($_SESSION['clickedID'] == $valeur){
+            echo 'cartes identiques'; 
+              
+            if (!isset($_SESSION["foundpairs"])){
+                $_SESSION["foundpairs"] = [];
+            }
+            $i = 0;
+            foreach ($_SESSION["foundpairs"] as $key => $value) {
+                $i++;
+            }
+            if (isset($_SESSION["foundpairs"])){
+                $_SESSION["foundpairs"][$i] = $valeur;
+                $foundPairs = $_SESSION["foundpairs"];
+            }
+            // var_dump($_SESSION["foundpairs"]);
+        }else{
+            echo 'cartes non identiques';
+        }
+    }
+    $_SESSION['clickedID'] = $valeur;
+    //refais étape par étape avant click, premier click etc... session tjs un train de retard donc retente, si comprend pas pk la session à la fin : j'ouvre la page, je ne clique sur rien : rien ne se passe. Je clique sur une carte -> la session clickcounter se lance, click prend la valeur 1, valeur prend la valeur de la carte, la boucle ne va pas dans le if, et straight à dire que la session clickedID va prendre la valeur. Ensuite je clique une nouvelle fois, la session clickedID a tjs une valeur stockée, je refais toute la boucle from Post['face'] etc... $valeur a une nouvelle valeur : celle de la nouvelle carte cliquée et SEULEMENT LA je rentre dans la boucle if click modulo de 2, dans ce cas, je lui dis : la session que tu avais au tour précédant, que tu as stocké, tu vas me la comparer avec la nouvelle valeur que tu t'es stocké dans $valeur. Une fois que la boucle se termine, je lui redis que Session clickedId aura du coup à nouveau la nouvelle valeur qui est stockée dans valeur etc...etc...
+
+
+
+    if($click == 2){
+        $_SESSION['clickcounter']=0;
+    }   
+}  
+
+
+    // caser le click dans une session
+>>>>>>> bddced62c8a4f6b6e16c8c951cccba4abb166a37
 ?>
 
 
@@ -128,6 +206,7 @@ $_SESSION['start'][$_POST['index']]->foundPairs($_SESSION['start'][$_POST['index
     
     <?php 
         if(isset($_SESSION['start'])){
+<<<<<<< HEAD
             foreach($_SESSION['start'] as $key => $value) { 
                 /* var_dump($value); */
                 ?>
@@ -159,3 +238,49 @@ $_SESSION['start'][$_POST['index']]->foundPairs($_SESSION['start'][$_POST['index
 
 </body>
 </html>
+=======
+            
+            foreach($_SESSION['start'] as $card) {               
+                if(in_array($card->_identifiant, $foundPairs)) {
+                    ?>
+                        <img src="<?php echo $card->_face ?>" width="200px">
+                <?php        
+                }elseif($card->_retourner==2){
+                    ?>
+                    <!-- <img src="<?php echo SESSION DE LURL DE LA CARTE CLIQUEE ?>" width="200px"> -->
+                <?php 
+                }
+                else{ 
+                    ?>
+                        <input type="hidden" name="retourner" value="<?php echo $card->_retourner ?>">
+                        <input type="hidden" name="identifiant" value="<?php  echo $card->_identifiant ?>">
+                        <button type="submit" name="submit">
+                            <img src="<?php echo $card->_back ?>" width="200px">
+                        </button> 
+                    <?php
+                    }
+                }   
+            }
+        
+  
+        ?>           
+    </form>
+
+</body>
+</html>
+
+<!-- pour choisir dans l'array que quelques pairs -->
+<!-- for ($i = 0 ; $i < 3 ; $i ++)
+
+{
+
+    echo "<td align = 'center'> <img src = \"" ;
+
+    echo $faceUpArray [$i] ;
+
+    echo " \" width = '115' height = '115' </td>" ;
+
+}
+
+    ?> -->
+>>>>>>> bddced62c8a4f6b6e16c8c951cccba4abb166a37
