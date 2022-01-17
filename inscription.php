@@ -1,6 +1,17 @@
 <?php
 require 'manipulationDB.php';
 
+if(isset($_POST['inscription'])){
+    if(!empty($_POST['login']) && !empty($_POST['password']) && !empty($_POST['password2'])){
+        if($_POST['password'] == $_POST['password2']){
+            //vérifier que le login utilisé n'est pas déjà existant avec une fonction
+            //si cette fonction OK (donc pas utilisé) alors :
+            signIn($_POST['login'], $_POST['password']); 
+
+        }  
+    }
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -19,7 +30,7 @@ require 'manipulationDB.php';
     <main>
         <form action="" method="post">
             <label for="name">Login :</label>
-            <input type="text" id="login" name="user_login">
+            <input type="text" id="login" name="login">
             <label for="msg">Mot de passe :</label>
             <input type="password" id="pass" name="password" required>
             <label for="msg">Confirmation du mot de passe :</label>
