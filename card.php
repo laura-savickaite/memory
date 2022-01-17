@@ -17,9 +17,6 @@ class Image {
         $situation->_retourner = 2;
     }
 
-    public function retournerCarte ($etat){
-        $etat ->_retourner = 1;
-    }
 
     public function foundPairs ($uniqueCarte){
 

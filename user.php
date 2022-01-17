@@ -1,20 +1,18 @@
 <?php
 
 class User {
-    private $_id;
-    public $_login;
-    public $_password;
-    public $_password2;
+    public $id;
+    public $login;
 
-    public function __construct($login, $password, $password2){
-        $this->login = $login;
-        $this->password = $password;
-        $this->password2 = $password2;
+    public function __construct($id, $login){
+        $this->_id = $id;
+        $this->_login = $login;
     }
-
+    // quand connecté ALORS tu me créés/instancie l'objet utilisateur dans une session
+    
     public function register($login, $password){
-        $this->login = $login;
-        $this->password = $password;
+        $this->_login = $login;
+        $this->_password = $password;
     }
 
 }

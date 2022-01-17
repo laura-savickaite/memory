@@ -1,4 +1,5 @@
 <?php
+require 'manipulationDB.php';
 
 ?>
 
