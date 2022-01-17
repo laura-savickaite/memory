@@ -1,27 +1,3 @@
-<!-- 
-I- plusieurs images sont présentées, une image est présentée deux fois, elles sont arrangées sous forme de tableau 
-    a) créer un tableau avec les images stockées
-    b) créer une boucle disant que chaque image doit être doublée
-    c) display ces images dans un tableau html // à voir
-
-II- leur ordre est randomnisé selon la partie == chaque nouvelle partie (une nouvelle session crée lors de l'appui d'un bouton "jouer") -> nouvel ordre.
-    a) créer une session lorsque le start est appuyé : session jeu
-    b) si c'est un utilisateur connecté, alors rajouté l'id-utilisateurs sinon, non
-    c) si une session jeu existante, alors shuffle les cartes et les garder dans cet ordre-ci
-
-III- deux clics possibles :: 
-     -soit les deux images cliquées ne sont pas pareilles alors echo "ok"
-     -soit les deux images cliquées sont pareilles alors echo "pas ok"
-
-     a) créer une boucle pour compter le nombre de clics
-     b) si les deux clics correspondent aux mêmes images : "ok" -- sinon "pas ok"
-
-IV- quand le dos est cliqué -> l'image se retourne => face. La face n'est présentée que si et seulement si le dos est cliqué
-    a)
-    b)
-    c)
--->
-
 <?php
 
 require 'card.php';
@@ -44,7 +20,6 @@ $spring3Bis = new Image ("Images/spring3.png", "Images/dos.jpeg", 12, 1);
 $faceUpArray = array($lucifer, $reading, $renaissance, $spring1, $spring2,
 $spring3, $luciferBis, $readingBis, $renaissanceBis, $spring1Bis, $spring2Bis, $spring3Bis);
 
-// $foundPairs=array();
 
 if(isset($_POST['startgame'])){
     shuffle($faceUpArray); 
@@ -69,41 +44,12 @@ $_SESSION['start'][$_POST['index']]->tournerCarte($_SESSION['start'][$_POST['ind
 $_SESSION['start'][$_POST['index']]->foundPairs($_SESSION['start'][$_POST['index']]);
 
 
-// $counter=0;
-// for ($i=0; $i < count($_SESSION['pairs']); $i++){
-//     $counter++;
-// }
-// if($counter > 2){
-
-
-//     foreach($_SESSION['pairs'] as $infoCarte){
-//         $infoCarte->_retourner = 1; 
-//     }
-//     unset($_SESSION['pairs']);
-// }
-
-// echo $counter;
-
-    echo "<pre>";
-    var_dump($_SESSION['pairs']);
-    echo "</pre>";
-
-// if ($click % 2 == 0){
-        
-//     if ($_SESSION['clickedID'] == $valeur){
-//         echo 'cartes identiques'; 
-        
-        
-//     }else{
-//         echo 'cartes non identiques'; 
-//     }
-// }
-// $_SESSION['clickedID'] = $valeur;
+    // echo "<pre>";
+    // var_dump($_SESSION['pairs']);
+    // echo "</pre>";
 
  }
 
-// echo ($_SESSION['clickedID']);
-/* var_dump($_SESSION['start']); */
 
 ?>
 
@@ -151,10 +97,6 @@ $_SESSION['start'][$_POST['index']]->foundPairs($_SESSION['start'][$_POST['index
                         }
                     }
                 
-        // echo "<br>";
-        // echo "<pre>";
-        // var_dump($_SESSION['start']);
-        // echo "</pre>";
             ?>
 
 </body>
