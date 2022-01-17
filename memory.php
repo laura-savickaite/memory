@@ -77,7 +77,7 @@ $_SESSION['start'][$_POST['index']]->foundPairs($_SESSION['start'][$_POST['index
             foreach($_SESSION['start'] as $key => $value) { 
                 /* var_dump($value); */
                 ?>
-                <form action="" method='POST'>
+                <form action="" method='post'>
                         <input type="hidden" name="retourner" value="<?= $value->_retourner ?>"/>
                         <input type="hidden" name="identifiant" value="<?= $value->_identifiant ?>"/>
                         <input type="hidden" name="index" value="<?= $key ?>"/>
