@@ -1,5 +1,5 @@
 <?php
-require 'manipulationDB.php';
+require 'inscriptionDB.php';
 
 if(isset($_POST['inscription'])){
     if(!empty($_POST['login']) && !empty($_POST['password']) && !empty($_POST['password2'])){

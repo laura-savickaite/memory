@@ -1,5 +1,10 @@
 <?php
 
+require 'connexionDB.php';
+
+if(isset($_POST['connexion'])){
+    connectLogin($_POST['login'], $_POST['password']);
+}
 
 ?>
 
@@ -19,7 +24,7 @@
     <label for="msg">Mot de passe :</label>
     <input type="password" id="pass" name="password" required>
 
-    <button class="#" type="submit" name="connexion">Sign in</button>
+    <button class="#" type="submit" name="connexion">Log in</button>
 </form>
 </body>
 </html>
