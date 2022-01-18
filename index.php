@@ -1,5 +1,13 @@
 <?php
 
+require 'bdd_connect.php';
+
+session_start();
+
+if(isset($_SESSION)){
+    var_dump($_SESSION);
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -19,6 +27,13 @@
                 <li><a href="#">Game</a></li>
                 <li><a href="#">Top gamers</a></li>
                 <li><a href="#">Inscription</a></li>
+                <li>
+                    <form action="deconnexion.php" method="post">
+                        <button class="#" type="submit" name="deco">
+                            Deconnexion
+                        </button>
+                    </form>
+                </li>
             </ul>
         </nav>
     </header>

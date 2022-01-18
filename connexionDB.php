@@ -2,15 +2,7 @@
 
 function connectLogin($login){
 
-    $host='localhost';
-    $user='root';
-    $password='';
-    $dbname='memory';
-
-    $dsn='mysql:host='.$host.'; dbname='.$dbname.'; charset=utf8';
-
-    $pdo=new PDO($dsn, $user, $password);
-
+    require 'bdd_connect.php';
 
     $login=$_POST['login'];
 
@@ -29,14 +21,7 @@ function connectLogin($login){
 
 function connectPassword($login, $password){
 
-    $host='localhost';
-    $user='root';
-    $password='';
-    $dbname='memory';
-
-    $dsn='mysql:host='.$host.'; dbname='.$dbname.'; charset=utf8';
-
-    $pdo=new PDO($dsn, $user, $password);
+    require 'bdd_connect.php';
 
     $login=$_POST['login'];
     $password=$_POST['password'];
@@ -56,10 +41,11 @@ function connectPassword($login, $password){
             $id = $resultIdCo->id;
 
             $user = new User($id, $login);
-            $_SESSION['id'] = $id;
-            $_SESSION['login'] = $login;
 
-            var_dump($_SESSION);
+            $_SESSION['user']['id'] = $id;
+            $_SESSION['user']['login'] = $login;
+
+            header('Location:index.php');
         }
     } 
 
@@ -72,6 +58,7 @@ class User {
     function __construct($id, $login){
         $this->_id = $id;
         $this->_login = $login;
+
     }
 
 }

@@ -2,14 +2,7 @@
 
     function isLoginUsed ($login){
 
-        $host='localhost';
-        $user='root';
-        $password='';
-        $dbname='memory';
-
-        $dsn='mysql:host='.$host.'; dbname='.$dbname.'; charset=utf8';
-
-        $pdo=new PDO($dsn, $user, $password);
+        require 'bdd_connect.php';
 
         $login = $_POST['login'];
 
@@ -27,14 +20,8 @@
     }
 
     function signIn ($login, $password){
-        //ce login sera le POST et pareil pour le password
-        $host='localhost';
-        $user='root';
-        $password='';
-        $dbname='memory';
-
-        $dsn='mysql:host='.$host.'; dbname='.$dbname.'; charset=utf8';
-        $pdo=new PDO($dsn, $user, $password);
+        
+        require 'bdd_connect.php';
 
         $login = $_POST['login'];
         $password = $_POST['password'];
