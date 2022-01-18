@@ -8,7 +8,7 @@ if(isset($_POST['inscription'])){
         if($_POST['password'] == $_POST['password2']){
             //vérifier que le login utilisé n'est pas déjà existant avec une fonction
             isLoginUsed($_POST['login']);
-            
+
         }  
     }
 }
@@ -38,7 +38,7 @@ if(isset($_POST['inscription'])){
             <input type="password" id="pass2" name="password2" required
             >
 
-            <button class="boutoninscription" type="submit" name="inscription">Sign in</button>
+            <button class="#" type="submit" name="inscription">Sign in</button>
         </form>
     </main>
 </body>
