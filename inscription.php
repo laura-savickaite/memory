@@ -3,11 +3,12 @@ require 'manipulationDB.php';
 
 if(isset($_POST['inscription'])){
     if(!empty($_POST['login']) && !empty($_POST['password']) && !empty($_POST['password2'])){
+        $validation=true;
+
         if($_POST['password'] == $_POST['password2']){
             //vérifier que le login utilisé n'est pas déjà existant avec une fonction
-            //si cette fonction OK (donc pas utilisé) alors :
-            signIn($_POST['login'], $_POST['password']); 
-
+            isLoginUsed($_POST['login']);
+            
         }  
     }
 }
