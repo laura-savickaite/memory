@@ -4,9 +4,9 @@ require 'bdd_connect.php';
 
 session_start();
 
-if(isset($_SESSION)){
-    var_dump($_SESSION);
-}
+// if(isset($_SESSION)){
+//     var_dump($_SESSION);
+// }
 
 ?>
 
@@ -16,6 +16,7 @@ if(isset($_SESSION)){
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="style.css" rel="stylesheet">
     <title>Museum</title>
 </head>
 <body>
@@ -39,16 +40,18 @@ if(isset($_SESSION)){
     </header>
 
     <main>
-        <img src="Images/header.jpeg" width="100%">
-        <div class="texte-index">
-            <h1>Museum of XXXXX</h1>
+    <article class="landing-page">
+
+          <img src="Images/header.jpeg" width="70%">   
+            <h1 id="titre-index">Museum of XXXXX</h1>
+        <section class="texte-index">
             <p>The museum of XXX fête ses XXXX de son exposition XXXXX pour l'occasion venez jouer un petit jeu de memory pour XXXXXX</p>
-            <button></button>
-        </div>
+        </section>
+    </article>
     </main>
 
     <footer>
-        <a href="#"><img src="Images/github.png"></a>
+        <a href="#"><img src="Images/github.png" width="50px"></a>
     </footer>
 </body>
 </html>
