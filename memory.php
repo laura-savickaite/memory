@@ -1,6 +1,7 @@
 <?php
 
 require 'card.php';
+
 session_start();
 
 $lucifer = new Image ("Images/lucifer.png", "Images/dos.jpeg", 1, 1);
@@ -27,29 +28,50 @@ if(isset($_POST['startgame'])){
     $_SESSION['start']=$faceUpArray;
 
     $_SESSION['clickcounter']=0;
+
+    $score=0;
+
+    
 }
 if(isset($_POST['restartgame'])){
     session_destroy();
 }
 
+if (!isset($_SESSION['indexShowed']))
+    $_SESSION['indexShowed'] = array();
+if (!isset($_SESSION['signal']))
+    $_SESSION['signal'] = -1;
+
+    // echo 'signal == '.$_SESSION['signal'];
+
+// if (isset($_SESSION['signal']))
+//     echo 'signal == '.$_SESSION['signal'];
+if (isset($_SESSION['signal']) && $_SESSION['signal'] == 1){
+    echo 'entre ici';
+    $_SESSION['signal'] = 0;
+    $_SESSION['start'][$_SESSION['indexShowed'][0]]->retournerCarte($_SESSION['start'][$_SESSION['indexShowed'][0]]);
+    $_SESSION['start'][$_SESSION['indexShowed'][1]]->retournerCarte($_SESSION['start'][$_SESSION['indexShowed'][1]]);
+    unset($_SESSION['indexShowed']);
+    $_SESSION['indexShowed'] = array();
+
+}
+else if(count($_SESSION['indexShowed']) == 2){
+    unset($_SESSION['indexShowed']);
+    $_SESSION['indexShowed'] = array();
+
+}
+
 if(isset($_POST['submit'])){
 
-$_SESSION['clickcounter']=$_SESSION['clickcounter']+1;
-$click = $_SESSION['clickcounter'];
-$valeur = $_POST['identifiant'];
-
-
+array_push($_SESSION['indexShowed'],$_POST['index']);
+var_dump($_SESSION['indexShowed']);
 $_SESSION['start'][$_POST['index']]->tournerCarte($_SESSION['start'][$_POST['index']]);
 
-$_SESSION['start'][$_POST['index']]->foundPairs($_SESSION['start'][$_POST['index']]);
 
-
-    // echo "<pre>";
-    // var_dump($_SESSION['pairs']);
-    // echo "</pre>";
+$_SESSION['clickcounter']=$_SESSION['clickcounter']+1;
+    echo $_SESSION['clickcounter']; 
 
  }
-
 
 ?>
 
@@ -59,7 +81,7 @@ $_SESSION['start'][$_POST['index']]->foundPairs($_SESSION['start'][$_POST['index
 <head>
   <meta charset="utf-8">
   <title>Memory game</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="memory.css">
 </head>
 <body>
 
@@ -71,33 +93,41 @@ $_SESSION['start'][$_POST['index']]->foundPairs($_SESSION['start'][$_POST['index
         <button type="submit" name="restartgame">Restart game</button>
     </form>
 
-    
+    <div class="table-memory">
     <?php 
         if(isset($_SESSION['start'])){
+            // var_dump($_SESSION['start']);
+
             foreach($_SESSION['start'] as $key => $value) { 
                 /* var_dump($value); */
                 ?>
                 <form action="" method='post'>
+                <?php
+                    var_dump($value->_retourner);
+
+                    if($value->_retourner == 1){
+                ?>                    
                         <input type="hidden" name="retourner" value="<?= $value->_retourner ?>"/>
                         <input type="hidden" name="identifiant" value="<?= $value->_identifiant ?>"/>
                         <input type="hidden" name="index" value="<?= $key ?>"/>
-                <?php
-                    if($value->_retourner == 1){
-                ?>
                         <button type="submit" name="submit">
-                            <img src="<?= $value->_back ?>" width="200px">
-                        </button>                        
+                            <img src="<?= $value -> _back; ?>" width="100px">
+                        </button>                    
                     </form>
                 <?php
                         }elseif($value->_retourner == 2) {     
                 ?> 
-                <img src="<?= $value->_face ?>" width="200px">
+                    <img src="<?= $value -> _face; ?>" width="100px">
               <?php  
-                            }
+                                if (isset($_POST['index']))
+                                $_SESSION['start'][$_POST['index']]->foundPairs($_SESSION['start'][$_POST['index']]);
+ 
                         }
                     }
+
+                }
                 
             ?>
-
+    </div>
 </body>
 </html>

@@ -1,0 +1,13 @@
+body{
+    margin: O;
+    padding: 0;
+
+}
+
+.table-memory{
+    width: 70%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    /* position: fixed; */
+}
