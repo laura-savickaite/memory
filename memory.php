@@ -30,8 +30,7 @@ if(isset($_POST['startgame'])){
     $_SESSION['clickcounter']=0;
 
     $score=0;
-
-    
+ 
 }
 if(isset($_POST['restartgame'])){
     session_destroy();
@@ -42,12 +41,7 @@ if (!isset($_SESSION['indexShowed']))
 if (!isset($_SESSION['signal']))
     $_SESSION['signal'] = -1;
 
-    // echo 'signal == '.$_SESSION['signal'];
-
-// if (isset($_SESSION['signal']))
-//     echo 'signal == '.$_SESSION['signal'];
 if (isset($_SESSION['signal']) && $_SESSION['signal'] == 1){
-    echo 'entre ici';
     $_SESSION['signal'] = 0;
     $_SESSION['start'][$_SESSION['indexShowed'][0]]->retournerCarte($_SESSION['start'][$_SESSION['indexShowed'][0]]);
     $_SESSION['start'][$_SESSION['indexShowed'][1]]->retournerCarte($_SESSION['start'][$_SESSION['indexShowed'][1]]);
@@ -56,15 +50,19 @@ if (isset($_SESSION['signal']) && $_SESSION['signal'] == 1){
 
 }
 else if(count($_SESSION['indexShowed']) == 2){
+    $_SESSION['found']=1;
+    @$_SESSION['foundcards']++;  
     unset($_SESSION['indexShowed']);
     $_SESSION['indexShowed'] = array();
 
 }
 
+var_dump($_SESSION['indexShowed']);
+
 if(isset($_POST['submit'])){
 
 array_push($_SESSION['indexShowed'],$_POST['index']);
-var_dump($_SESSION['indexShowed']);
+// var_dump($_SESSION['indexShowed']);
 $_SESSION['start'][$_POST['index']]->tournerCarte($_SESSION['start'][$_POST['index']]);
 
 
@@ -96,14 +94,11 @@ $_SESSION['clickcounter']=$_SESSION['clickcounter']+1;
     <div class="table-memory">
     <?php 
         if(isset($_SESSION['start'])){
-            // var_dump($_SESSION['start']);
-
             foreach($_SESSION['start'] as $key => $value) { 
-                /* var_dump($value); */
                 ?>
                 <form action="" method='post'>
                 <?php
-                    var_dump($value->_retourner);
+                    // var_dump($value->_retourner);
 
                     if($value->_retourner == 1){
                 ?>                    
