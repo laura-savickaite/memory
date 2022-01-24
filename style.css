@@ -3,6 +3,11 @@ body{
     padding: 0;
 }
 
+@font-face {
+    font-family: Titreprincipal;
+    src: url(Fonts/PPRightGroteskText-CompactMedium\ copie.otf);
+}
+
 a {
     text-decoration: none;
     color: black;
@@ -27,20 +32,65 @@ nav li {
 
 .landing-page{
     margin: 5%;
-    padding-top: 3%;
+    padding-top: 1%;
     display: flex;
     flex-direction: row-reverse;
     justify-content: space-evenly;
-    align-items:flex-end;
+    align-items: flex-end;
 }
 
-#titre-index {
+.carousel-wrapper {
+    width: 70%;
+    overflow: hidden;
+    margin: 0 auto;
+}
+.carousel {
+    /* display: inline-block; */
+    display: flex;
+    /* flex-direction: row; */
+    animation: sliding 12s infinite;
+}
+
+.carousel-wrapper img {
+        flex-shrink: 0;
+        min-width: 100%;
+        min-height: 100%
+}
+
+@keyframes sliding {
+    30% {
+      transform: translateX(0);
+    }
+    35% {
+      transform: translateX(-100%);
+    }
+    65% {
+      transform: translateX(-100%);
+    }
+    70% {
+      transform: translateX(-200%);
+    }
+    98% {
+      transform: translateX(-200%);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+
+.titre-index {
     position: absolute;
     width: 50%;
+    top: 7%;
+    left: 21%;
+    font-size: 10rem;
+    color: rgb(238, 20, 20);
+    font-family: Titreprincipal;
+
 }
 
 .texte-index {
     width: 30%;
-    margin-bottom: 10%;
+    margin-bottom: 5%;
 }
 
