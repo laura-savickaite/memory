@@ -4,9 +4,9 @@ require 'bdd_connect.php';
 
 session_start();
 
-// if(isset($_SESSION)){
-//     var_dump($_SESSION);
-// }
+if(isset($_SESSION)){
+    var_dump($_SESSION['user']);
+}
 
 ?>
 

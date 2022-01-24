@@ -1,8 +1,14 @@
 <?php
 
-require 'card.php';
+require_once 'card.php';
+require_once 'score.php';
 
 session_start();
+
+if(isset($_SESSION)){
+    var_dump($_SESSION['user']);
+}
+
 
 $lucifer = new Image ("Images/lucifer.png", "Images/dos.jpeg", 1, 1);
 // var_dump($lucifer -> _face);
@@ -28,12 +34,15 @@ if(isset($_POST['startgame'])){
     $_SESSION['start']=$faceUpArray;
 
     $_SESSION['clickcounter']=0;
-
-    $score=0;
  
 }
 if(isset($_POST['restartgame'])){
-    session_destroy();
+    unset($_SESSION['indexShowed']);
+    unset($_SESSION['start']);
+    unset($_SESSION['clickcounter']);
+    unset($_SESSION['signal']);
+    unset($_SESSION['found']);
+    unset($_SESSION['foundcards']);
 }
 
 if (!isset($_SESSION['indexShowed']))
@@ -51,25 +60,35 @@ if (isset($_SESSION['signal']) && $_SESSION['signal'] == 1){
 }
 else if(count($_SESSION['indexShowed']) == 2){
     $_SESSION['found']=1;
-    @$_SESSION['foundcards']++;  
     unset($_SESSION['indexShowed']);
+    @$_SESSION['foundcards']++; 
     $_SESSION['indexShowed'] = array();
 
 }
 
-var_dump($_SESSION['indexShowed']);
-
 if(isset($_POST['submit'])){
-
 array_push($_SESSION['indexShowed'],$_POST['index']);
 // var_dump($_SESSION['indexShowed']);
 $_SESSION['start'][$_POST['index']]->tournerCarte($_SESSION['start'][$_POST['index']]);
 
 
 $_SESSION['clickcounter']=$_SESSION['clickcounter']+1;
-    echo $_SESSION['clickcounter']; 
-
+    // echo $_SESSION['clickcounter']; 
  }
+
+
+ if(isset($_SESSION['found'])){
+    if(@isset($_SESSION['foundcards'])){
+        // var_dump($_SESSION['foundcards']);
+        if($_SESSION['foundcards'] == ((count($_SESSION['start'])/2)-1)){ 
+            if(!empty($_SESSION['clickcounter'])){
+                // var_dump($_SESSION['clickcounter']);
+                getScore($_SESSION['clickcounter']);
+            }
+        }
+    }
+} 
+// var_dump($_SESSION['start']);
 
 ?>
 

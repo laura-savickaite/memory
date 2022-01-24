@@ -1,6 +1,9 @@
 <?php
 
+require_once ('score.php');
+
 class Image {
+    private $total;
     public $_face;
     public $_back;
     public $_identifiant;
@@ -37,20 +40,7 @@ class Image {
                 $_SESSION['signal'] = 1;
                   echo "<meta http-equiv='refresh' content='1;URL=memory.php'>";
             }
-
-            if(isset($_SESSION['found'])){
-                if(@isset($_SESSION['foundcards'])){
-                    if($_SESSION['foundcards'] == ((count($_SESSION['start'])/2)-1)){ 
-                        echo "ok";
-                    }
-                }
-            }
-        // unset($_SESSION['pairs']); 
         }  
-
-        // echo $_SESSION['found'];
-        // echo $_SESSION['face'];
-        // echo $face;
 
         $_SESSION['face'] = $face;
 
