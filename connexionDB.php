@@ -44,6 +44,7 @@ function connectPassword($login, $password){
 
             $_SESSION['user']['id'] = $id;
             $_SESSION['user']['login'] = $login;
+            $_SESSION['user']['password'] = $password;
 
             header('Location:index.php');
         }
