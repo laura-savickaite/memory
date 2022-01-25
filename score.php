@@ -10,7 +10,7 @@
 
 
     function addScore($score, $id_utilisateur){
-        require 'bdd_connect.php';
+        require_once 'bdd_connect.php';
 
         // $id_utilisateur = $_SESSION['user']['id'];
         // $score = $test;
