@@ -2,12 +2,14 @@
 
 require_once 'card.php';
 require_once 'score.php';
+require_once 'level.php';
 
 session_start();
 
-if(isset($_SESSION)){
-    var_dump($_SESSION['user']);
-}
+// if(isset($_SESSION)){
+//     var_dump($_SESSION['user']);
+// }
+
 
 
 $lucifer = new Image ("Images/lucifer.png", "Images/dos.jpeg", 1, 1);
@@ -23,17 +25,45 @@ $renaissanceBis = new Image ("Images/renaissance.png", "Images/dos.jpeg", 9, 1);
 $spring1Bis = new Image ("Images/spring1.png", "Images/dos.jpeg", 10, 1);
 $spring2Bis = new Image ("Images/spring2.png", "Images/dos.jpeg", 11, 1);
 $spring3Bis = new Image ("Images/spring3.png", "Images/dos.jpeg", 12, 1);
+$crown = new Image ("Images/crown.png", "Images/dos.jpeg", 13, 1);
+$renaissance1 = new Image ("Images/renaissance1.png", "Images/dos.jpeg", 14, 1);
+$eyes = new Image ("Images/eyes.png", "Images/dos.jpeg", 15, 1);
+$sunflowers = new Image ("Images/sunflowers.png", "Images/dos.jpeg", 16, 1);
+$grec = new Image ("Images/grec.png", "Images/dos.jpeg", 17, 1);
+$laurier = new Image ("Images/laurier.png", "Images/dos.jpeg", 18, 1);
+$crownBis = new Image ("Images/crown.png", "Images/dos.jpeg", 19, 1);
+$renaissance1Bis = new Image ("Images/renaissance1.png", "Images/dos.jpeg", 20, 1);
+$eyesBis = new Image ("Images/eyes.png", "Images/dos.jpeg", 21, 1);
+$sunflowersBis = new Image ("Images/sunflowers.png", "Images/dos.jpeg", 22, 1);
+$grecBis = new Image ("Images/grec.png", "Images/dos.jpeg", 23, 1);
+$laurierBis = new Image ("Images/laurier.png", "Images/dos.jpeg", 24, 1);
 
-$faceUpArray = array($lucifer, $reading, $renaissance, $spring1, $spring2,
+
+$faceUpArrayEasy = array($lucifer, $reading, $renaissance, $luciferBis, $readingBis, $renaissanceBis);
+$faceUpArrayMedium = array($lucifer, $reading, $renaissance, $spring1, $spring2,
 $spring3, $luciferBis, $readingBis, $renaissanceBis, $spring1Bis, $spring2Bis, $spring3Bis);
+$faceUpArrayHard = array($lucifer, $reading, $renaissance, $spring1, $spring2,
+$spring3, $crown, $renaissance1, $eyes, $sunflowers, $grec, $laurier, $luciferBis, $readingBis, $renaissanceBis, $spring1Bis, $spring2Bis, $spring3Bis, $crownBis, $renaissance1Bis, $eyesBis, $sunflowersBis, $grecBis, $laurierBis);
 
 
 if(isset($_POST['startgame'])){
-    shuffle($faceUpArray); 
 
-    $_SESSION['start']=$faceUpArray;
+    var_dump($_POST['lvl']);
 
-    $_SESSION['clickcounter']=0;
+    if($_POST['lvl'] == "easy"){
+        lvlShuffle($faceUpArrayEasy);
+    }
+    elseif($_POST['lvl'] == "medium"){
+        lvlShuffle($faceUpArrayMedium);
+    }else {
+        lvlShuffle($faceUpArrayHard);
+    }
+
+    // shuffle($faceUpArray); 
+
+    // $_SESSION['start']=$faceUpArray;
+
+    // $_SESSION['clickcounter']=0;
  
 }
 if(isset($_POST['restartgame'])){
@@ -103,6 +133,12 @@ $_SESSION['clickcounter']=$_SESSION['clickcounter']+1;
 <body>
 
     <form action="" method="post">
+    <label for="lvl">Choose a level:</label>
+        <select id="lvl" name="lvl">
+            <option value="easy">Easy</option>
+            <option value="medium">Medium</option>
+            <option value="hard">Hard</option>
+        </select>
         <button type="submit" name="startgame">Start game</button>
     </form>
 

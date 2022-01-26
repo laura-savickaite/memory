@@ -23,11 +23,14 @@ function myTop ($id_utilisateur){
 function top (){
     require 'bdd_connect.php';
 
-    $topDB=$pdo -> prepare('SELECT `score` FROM `game` ORDER BY score DESC LIMIT 3');
+    $topDB=$pdo -> prepare('SELECT `score` FROM `game` ORDER BY score DESC LIMIT 10');
     $topDB -> execute();
     $resultSearchTop = $topDB->fetchAll(PDO::FETCH_COLUMN);
 
     var_dump($resultSearchTop);
+    foreach($resultSearchTop as $lol){
+        echo $lol;
+    }
 }
 
 ?>
