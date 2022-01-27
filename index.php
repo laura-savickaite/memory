@@ -27,10 +27,10 @@ session_start();
     <header>
         <nav>
             <ul>
-                <li><a href="#">Accueil</a></li>
-                <li><a href="#">Game</a></li>
-                <li><a href="#">Top gamers</a></li>
-                <li><a href="#">Inscription</a></li>
+                <li><a href="index.php">Accueil</a></li>
+                <li><a href="accueil-jeu.php">Game</a></li>
+                <li><a href="inscription.php">Inscription</a></li>
+                <li><a href="connexion.php">Connexion</a></li>
                 <li>
                     <form action="deconnexion.php" method="post">
                         <button class="#" type="submit" name="deco">
@@ -54,7 +54,7 @@ session_start();
             <h1 class="titre-index">Museum of Classical Paintings</h1>
         <section class="texte-index">
             <p>The museum of Classical Paintings celebrates its first anniversary of its Renaissance Art exposition. For this occasion, come play a little game of Memory and challenge the best!</p>
-            <button id="bouton-index" type="button">Let's play <span id="arrow">→</span></button>
+            <button id="bouton-index" type="button"><a href="accueil-jeu.php">Let's play <span id="arrow">→</span></a></button>
         </section>
     </article>
     <article class="museum-news">
