@@ -139,6 +139,67 @@ nav li {
 .row{
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-evenly;
+}
+
+.square-colour-yellow {
+  background-color: rgb(219, 202, 107);
+  height: 300px;
+  width: 250px;
+  margin-bottom: 2%;
+  filter: drop-shadow(
+    1px 2px 4px hsl(0deg 0% 66%)
+  );
+}
+.square-colour-blue {
+  background-color: rgb(121, 147, 219);
+  height: 300px;
+  width: 250px;
+  margin-bottom: 2%;
+  filter: drop-shadow(
+    1px 2px 4px hsl(0deg 0% 66%)
+  );
+}
+.square-colour-red {
+  background-color: rgb(206, 55, 55);
+  height: 300px;
+  width: 250px;
+  filter: drop-shadow(
+    1px 2px 4px hsl(0deg 0% 66%)
+  );
+}
+
+.fill {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  height: 300px;
+  width: 250px;
+}
+.fill img {
+  flex-shrink: 0;
+  min-width: 100%;
+  min-height: 100%
+}
+
+.titre-expo {
+  color: white;
+  font-family: bouton;
+  margin: 8%;
+}
+.txt-expo p{
+  margin: 10%;
+  text-align: justify;
+  overflow-y:scroll;
+}
+.square-colour-red:hover .txt-expo  {
+  visibility: visible;
+  opacity: 1;
+}
+
+footer img{
+  margin: 1%;
+  padding-top: 4%;
 }
 

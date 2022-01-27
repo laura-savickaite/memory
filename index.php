@@ -59,22 +59,46 @@ session_start();
     </article>
     <article class="museum-news">
         <section class="row">
-            <div>lol</div>
-            <div>lol</div>
+            <div class="square-colour-yellow">
+                <div class="titre-expo">
+                    <p>Exposition Une</p>
+                    <p>Titre de l'Exposition et date</p>
+                    <p>→</p>
+                </div>
+            </div>
+            <div class="fill">
+                <img src="Images/img.jpg">
+            </div>
         </section>
         <section class="row">
-            <div>lol</div>
-            <div>lol</div>
+            <div class="fill">
+                <img src="Images/img2.jpeg">
+            </div>
+            <div class="square-colour-blue">
+                <div class="titre-expo">
+                    <p>Exposition Deux</p>
+                    <p>Titre de l'Exposition et date</p>
+                    <p>→</p>
+                </div>
+            </div>
         </section>
         <section class="row">
-            <div>lol</div>
-            <div>lol</div>
+            <div class="square-colour-red">
+                <div class="titre-expo">
+                    <p>Exposition Trois</p>
+                    <p>Titre de l'Exposition et date</p>
+                    <p>→</p>
+                </div>
+            </div>
+            <div class="fill">
+              <img src="Images/img3.png">  
+            </div>
         </section>
     </article>
     </main>
 
     <footer>
-        <a href="#"><img src="Images/github.svg" width="50px"></a>
+        <a href="https://github.com/laura-savickaite/memory"><img src="Images/github.svg" width="50px"></a>
     </footer>
 </body>
 </html>
