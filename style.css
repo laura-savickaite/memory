@@ -1,3 +1,15 @@
+/* 
+SOMMAIRE
+
+- GENERAL
+- INDEX
+- ACCUEIL JEU 
+*/
+
+
+
+/* GENERAL */
+
 body{
     margin: 0;
     padding: 0;
@@ -38,6 +50,8 @@ nav ul {
 nav li {
     margin-left: 5%;
 }
+
+/* INDEX */
 
 .landing-page{
     margin: 5%;
@@ -203,3 +217,10 @@ footer img{
   padding-top: 4%;
 }
 
+
+/* ACCUEIL JEU */
+
+.img-game {
+  display: flex;
+  justify-content: center;
+}
