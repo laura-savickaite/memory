@@ -48,7 +48,13 @@ top();
 
         <article class="accueil">
             <section class="entry-game">
-
+                <p>
+                    Come enjoy the Memory Game, it has different levels. You should connect to the Museum's website in order to be able to play the game and maybe attend the top.
+                </p>
+                <button class="gogame" type="submit" name="gogame">
+                        <a href="memory.php">Let's play!</a>
+                </button>
+                
             </section>
             <section class="top-game">
                 <table>
@@ -64,7 +70,6 @@ top();
                             echo "<tr>";  
                             echo "<td>".$link['login']."</td>";
                             echo "<td>".$link['score']."</td>";
-                            
                         }                         
                     ?>
                     </tbody>
