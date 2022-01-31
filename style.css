@@ -38,17 +38,25 @@ button {
     font-family: 'Raleway', sans-serif;
 }
 
+header {
+  background-color: white;
+}
+
 nav ul {
     list-style: none;
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
-    margin: 5%;
-   
+    margin: 5%; 
 }
 
 nav li {
     margin-left: 5%;
+}
+
+input {
+  border: none;
+  border-bottom: solid black 1px;
 }
 
 /* INDEX */
@@ -245,4 +253,35 @@ footer img{
 .top-game {
   border: solid black 1px;
   padding: 3%;
+}
+
+/* INSCRIPTION */
+
+.inscription-page {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.icons-header {
+  display: flex;
+  flex-direction: column-reverse;
+}
+.icons-header img {
+  width: 15vw;
+  margin-bottom: 5vh;
+}
+
+.form {
+  width: 15vw;
+  padding: 5%;
+  border: solid black 1px;
+}
+.form input {
+ margin-bottom: 5vh;
+}
+.form button {
+  text-align: center;
+  width: 70%;
 }
