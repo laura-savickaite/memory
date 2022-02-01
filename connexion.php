@@ -51,6 +51,9 @@ if(isset($_POST['connexion'])){
 
                     <button class="#" type="submit" name="connexion">Log in</button>
                 </form>
+                <div class="errors">
+                    UC
+                </div>
             </section>
             <section class="icons-header">
                 <img src="Images/header-connexion.jpeg">  
