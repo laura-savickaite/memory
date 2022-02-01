@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-var_dump($_SESSION['user']);
+// var_dump($_SESSION['user']);
 
 require_once 'profilDB.php';
 require_once 'top.php';
@@ -68,17 +68,38 @@ if(isset($_POST['update'])){
         </nav>      
 </header>
 <main>
-    <form action="" method="post">
-        <label for="name">Login: </label>
-        <input type="text" name="ulogin" id="loginn" value="<?= $_SESSION['user']['login']; ?>">  
+    <article class="profil">
+        <section class="profil-form">
+            <form action="" method="post">
+                <label for="name">Login: </label>
+                <input type="text" name="ulogin" id="loginn" value="<?= $_SESSION['user']['login']; ?>">  
 
-        <label for="name">Mot de passe: </label>
-        <input type="password" name="umdp" id="mdp">
+                <label for="name">Mot de passe: </label>
+                <input type="password" name="umdp" id="mdp">
 
 
-        <button type="submit" name="update">Update</button>
+                <button type="submit" name="update">Update</button>
 
-    </form>
+            </form>
+        </section>
+        <section class="profil-top">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Score</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <?php
+                    foreach ($_SESSION['myTop'] as $link) { 
+                        echo "<tr>";  
+                        echo "<td>".$link['score']."</td>";
+                    }                         
+                ?>
+                </tbody>
+            </table>
+        </section>
+    </article>
 </main>
 </body>
 </html>

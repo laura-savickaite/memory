@@ -4,6 +4,8 @@ SOMMAIRE
 - GENERAL
 - INDEX
 - ACCUEIL JEU 
+- INSCRIPTION & CONNEXION
+- PROFIL
 */
 
 
@@ -255,7 +257,7 @@ footer img{
   padding: 3%;
 }
 
-/* INSCRIPTION */
+/* INSCRIPTION & CONNEXION */
 
 .inscription-page {
   display: flex;
@@ -285,3 +287,23 @@ footer img{
   text-align: center;
   width: 70%;
 }
+
+/* PROFIL */
+
+.profil {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+.profil form {
+  display: flex;
+  flex-direction: column;
+}
+.profil-form input {
+  margin-bottom: 2vh;
+}
+.profil-form label {
+  margin-bottom: 2vh;
+}
+

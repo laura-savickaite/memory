@@ -7,7 +7,7 @@ function myResults ($id_utilisateur){
     $searchDB -> execute(['id_utilisateur' => $id_utilisateur]);
     $resultSearchMyResults = $searchDB->fetchAll(PDO::FETCH_COLUMN);
 
-    var_dump($resultSearchMyResults);
+    // var_dump($resultSearchMyResults);
 }
 
 function myTop ($id_utilisateur){
@@ -17,7 +17,8 @@ function myTop ($id_utilisateur){
     $myTopDB -> execute(['id_utilisateur' => $id_utilisateur]);
     $resultSearchMyTop = $myTopDB->fetchAll(PDO::FETCH_COLUMN);
 
-    var_dump($resultSearchMyTop);
+    // var_dump($resultSearchMyTop);
+    $_SESSION['myTop']=$resultSearchMyTop;
 }
 
 function top (){
