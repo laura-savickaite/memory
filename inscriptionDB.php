@@ -12,7 +12,7 @@
 
 
         if($resultlogRecherche !== false){
-            echo "Ce nom d'utilisateur est déjà pris.";
+            $_SESSION['error'] = "Ce nom d'utilisateur est déjà pris.";
             $validation=false;
         }else{
             signIn($_POST['login'], $_POST['password']);

@@ -45,7 +45,9 @@ if(isset($_POST['connexion'])){
                     <button class="#" type="submit" name="connexion">Log in</button>
                 </form>
                 <div class="errors">
-                    UC
+                    <?php
+                        echo $_SESSION['errorco'];
+                    ?>
                 </div>
             </section>
             <section class="icons-header">

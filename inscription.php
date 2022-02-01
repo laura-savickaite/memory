@@ -55,7 +55,9 @@ if(isset($_POST['inscription'])){
                 </form>
 
                 <div class="errors">
-                    UC
+                    <?php
+                    echo $_SESSION['error'];
+                    ?>
                 </div>
             </section>
             <section class="icons-header">

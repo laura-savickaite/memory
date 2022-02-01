@@ -14,7 +14,7 @@ function connectLogin($login){
     if($resultLogCo !== false){
         connectPassword($_POST['login'], $_POST['password']);
     }else{
-        echo "Login ou mdp faux.";
+        $_SESSION['errorco']= "Login ou mdp faux.";
     }
 
 }
@@ -31,7 +31,7 @@ function connectPassword($login, $password){
     $resultPassCo = $passCo->fetch(PDO::FETCH_OBJ);
 
         if($password !== ($resultPassCo->password)){
-            echo "Login ou mdp faux.";
+            $_SESSION['errorco']= "Login ou mdp faux.";
         }else{
 
             $idCo=$pdo -> prepare('SELECT `id` FROM `utilisateurs` WHERE `login`=:login');
