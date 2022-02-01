@@ -35,13 +35,6 @@ if(isset($_POST['inscription'])){
                 <li><a href="accueil-jeu.php">Game</a></li>
                 <li><a href="inscription.php">Inscription</a></li>
                 <li><a href="connexion.php">Connexion</a></li>
-                <li>
-                    <form action="deconnexion.php" method="post">
-                        <button class="#" type="submit" name="deco">
-                            Deconnexion
-                        </button>
-                    </form>
-                </li>
             </ul>
         </nav>      
     </header>

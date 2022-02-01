@@ -23,7 +23,8 @@ session_start();
     <title>Museum landing page</title>
 </head>
 <body>
-
+    <?php if(!isset($_SESSION['user'])){
+        ?>
     <header>
         <nav>
             <ul>
@@ -31,6 +32,18 @@ session_start();
                 <li><a href="accueil-jeu.php">Game</a></li>
                 <li><a href="inscription.php">Inscription</a></li>
                 <li><a href="connexion.php">Connexion</a></li>
+            </ul>
+        </nav>
+    </header>   
+    <?php
+    }else {
+        ?>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.php">Accueil</a></li>
+                <li><a href="accueil-jeu.php">Game</a></li>
+                <li><a href="profil.php">Profil</a></li>
                 <li>
                     <form action="deconnexion.php" method="post">
                         <button class="#" type="submit" name="deco">
@@ -40,7 +53,11 @@ session_start();
                 </li>
             </ul>
         </nav>
-    </header>
+    </header>  
+    <?php
+        }
+    ?>
+
 
     <main>
     <article class="landing-page">
