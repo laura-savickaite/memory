@@ -207,7 +207,7 @@ $_SESSION['clickcounter']=$_SESSION['clickcounter']+1;
                 <?php
                         }elseif($value->_retourner == 2) {     
                 ?> 
-                    <div><img src="<?= $value -> _face; ?>" width="100px"></div>
+                    <img src="<?= $value -> _face; ?>" width="100px">
               <?php  
                                 if (isset($_POST['index']))
                                 $_SESSION['start'][$_POST['index']]->foundPairs($_SESSION['start'][$_POST['index']]);

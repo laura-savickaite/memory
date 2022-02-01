@@ -26,6 +26,7 @@ body{
 
 .table-memory {
     display: grid;
-    grid-template-columns: 200px 200px 200px 200px 200px 200px;
-    grid-auto-flow: column;
+    grid-template-columns: repeat(6, auto);
+    grid-template-rows: repeat(3, 100px);
+    justify-content: center;
 }
