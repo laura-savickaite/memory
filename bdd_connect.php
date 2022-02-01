@@ -1,8 +1,17 @@
 <?php
+    // $host='localhost';
+    // $user='root';
+    // $password='';
+    // $dbname='memory';
+
+    // $dsn='mysql:host='.$host.'; dbname='.$dbname.'; charset=utf8';
+
+    // $pdo=new PDO($dsn, $user, $password);
+
     $host='localhost';
-    $user='root';
-    $password='';
-    $dbname='memory';
+    $user='laura-savickaite';
+    $password='laurasavickaite1997';
+    $dbname='laura-savickaite_memory';
 
     $dsn='mysql:host='.$host.'; dbname='.$dbname.'; charset=utf8';
 
