@@ -48,7 +48,7 @@ $spring3, $crown, $renaissance1, $eyes, $sunflowers, $grec, $laurier, $luciferBi
 
 if(isset($_POST['startgame'])){
 
-    var_dump($_POST['lvl']);
+    // var_dump($_POST['lvl']);
 
     if($_POST['lvl'] == "easy"){
         lvlShuffle($faceUpArrayEasy);
@@ -128,24 +128,64 @@ $_SESSION['clickcounter']=$_SESSION['clickcounter']+1;
 <head>
   <meta charset="utf-8">
   <title>Memory game</title>
+  <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="memory.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <form action="" method="post">
-    <label for="lvl">Choose a level:</label>
-        <select id="lvl" name="lvl">
-            <option value="easy">Easy</option>
-            <option value="medium">Medium</option>
-            <option value="hard">Hard</option>
-        </select>
-        <button type="submit" name="startgame">Start game</button>
+<?php if(!isset($_SESSION['user'])){
+        ?>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.php">Accueil</a></li>
+                <li><a href="accueil-jeu.php">Game</a></li>
+                <li><a href="inscription.php">Inscription</a></li>
+                <li><a href="connexion.php">Connexion</a></li>
+            </ul>
+        </nav>
+    </header>   
+    <?php
+    }else {
+        ?>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.php">Accueil</a></li>
+                <li><a href="accueil-jeu.php">Game</a></li>
+                <li><a href="profil.php">Profil</a></li>
+                <li>
+                    <form action="deconnexion.php" method="post">
+                        <button class="#" type="submit" name="deco">
+                            Deconnexion
+                        </button>
+                    </form>
+                </li>
+            </ul>
+        </nav>
+    </header>  
+    <?php
+        }
+    ?>
+
+<section class="form-jeu">
+    <form action="" class="form-lvl" method="post">
+        <label for="lvl">Choose a level:</label>
+            <select id="lvl" name="lvl">
+                <option value="easy">Easy</option>
+                <option value="medium">Medium</option>
+                <option value="hard">Hard</option>
+            </select>
+            <button type="submit" name="startgame">Start game</button>
     </form>
 
     <form action="" method="post">
         <button type="submit" name="restartgame">Restart game</button>
     </form>
-
+</section>
     <div class="table-memory">
     <?php 
         if(isset($_SESSION['start'])){
@@ -157,17 +197,17 @@ $_SESSION['clickcounter']=$_SESSION['clickcounter']+1;
 
                     if($value->_retourner == 1){
                 ?>                    
-                        <input type="hidden" name="retourner" value="<?= $value->_retourner ?>"/>
+                        <div><input type="hidden" name="retourner" value="<?= $value->_retourner ?>"/>
                         <input type="hidden" name="identifiant" value="<?= $value->_identifiant ?>"/>
                         <input type="hidden" name="index" value="<?= $key ?>"/>
                         <button type="submit" name="submit">
                             <img src="<?= $value -> _back; ?>" width="100px">
-                        </button>                    
+                        </button></div>                    
                     </form>
                 <?php
                         }elseif($value->_retourner == 2) {     
                 ?> 
-                    <img src="<?= $value -> _face; ?>" width="100px">
+                    <div><img src="<?= $value -> _face; ?>" width="100px"></div>
               <?php  
                                 if (isset($_POST['index']))
                                 $_SESSION['start'][$_POST['index']]->foundPairs($_SESSION['start'][$_POST['index']]);

@@ -1,13 +1,31 @@
 body{
     margin: O;
     padding: 0;
-
+    font-family: 'Raleway', sans-serif;
 }
 
-.table-memory{
-    width: 70%;
+.form-jeu {
     display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    /* position: fixed; */
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+.form-jeu button {
+    margin-bottom: 2vh;
+}
+.form-jeu select{
+    margin-bottom: 2vh;
+}
+.form-jeu label{
+    margin-bottom: 2vh;
+}
+.form-lvl {
+    display: flex;
+    flex-direction: column;
+}
+
+.table-memory {
+    display: grid;
+    grid-template-columns: 200px 200px 200px 200px 200px 200px;
+    grid-auto-flow: column;
 }

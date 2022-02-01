@@ -24,7 +24,7 @@ function myTop ($id_utilisateur){
 function top (){
     require 'bdd_connect.php';
 
-    $topDB=$pdo -> prepare('SELECT game.score, utilisateurs.login FROM `utilisateurs` INNER JOIN game ON id_utilisateurs=utilisateurs.id ORDER BY score DESC LIMIT 10');
+    $topDB=$pdo -> prepare('SELECT game.score, utilisateurs.login FROM `utilisateurs` INNER JOIN game ON id_utilisateurs=utilisateurs.id ORDER BY score ASC LIMIT 10');
     $topDB -> execute();
     $resultSearchTop = $topDB->fetchAll(PDO::FETCH_ASSOC);
 

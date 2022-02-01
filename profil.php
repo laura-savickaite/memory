@@ -93,7 +93,7 @@ if(isset($_POST['update'])){
                 <?php
                     foreach ($_SESSION['myTop'] as $link) { 
                         echo "<tr>";  
-                        echo "<td>".$link['score']."</td>";
+                        echo "<td>".$link."</td>";
                     }                         
                 ?>
                 </tbody>
