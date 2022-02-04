@@ -5,7 +5,7 @@
         $test = floor($points/2);
         echo $test;
 
-        addScore($test, $_SESSION['user']['id']);
+        @addScore($test, $_SESSION['user']['id']);
     }
 
 
@@ -15,8 +15,8 @@
         // $id_utilisateur = $_SESSION['user']['id'];
         // $score = $test;
 
-        $insertDB=$pdo -> prepare('INSERT INTO game SET score=:score, id_utilisateurs=:id_utilisateur');
-        $insertDB -> execute(['score' => $score, 'id_utilisateur' => $id_utilisateur]);
+        @$insertDB=$pdo -> prepare('INSERT INTO game SET score=:score, id_utilisateurs=:id_utilisateur');
+        @$insertDB -> execute(['score' => $score, 'id_utilisateur' => $id_utilisateur]);
 
     }
 ?>
