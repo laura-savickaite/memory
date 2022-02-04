@@ -191,23 +191,24 @@ $_SESSION['clickcounter']=$_SESSION['clickcounter']+1;
         if(isset($_SESSION['start'])){
             foreach($_SESSION['start'] as $key => $value) { 
                 ?>
-                <form action="" method='post'>
+                
                 <?php
                     // var_dump($value->_retourner);
 
-                    if($value->_retourner == 1){
-                ?>                    
-                        <div><input type="hidden" name="retourner" value="<?= $value->_retourner ?>"/>
+                    if($value->_retourner == 2){
+                ?>      
+                        <img src="<?= $value -> _face; ?>" width="100px">                                
+                <?php
+                        }else{     
+                ?> <form action="" method='post'>
+                        <input type="hidden" name="retourner" value="<?= $value->_retourner ?>"/>
                         <input type="hidden" name="identifiant" value="<?= $value->_identifiant ?>"/>
                         <input type="hidden" name="index" value="<?= $key ?>"/>
                         <button type="submit" name="submit">
                             <img src="<?= $value -> _back; ?>" width="100px">
-                        </button></div>                    
+                        </button>                   
                     </form>
-                <?php
-                        }elseif($value->_retourner == 2) {     
-                ?> 
-                    <img src="<?= $value -> _face; ?>" width="100px">
+                    
               <?php  
                                 if (isset($_POST['index']))
                                 $_SESSION['start'][$_POST['index']]->foundPairs($_SESSION['start'][$_POST['index']]);
